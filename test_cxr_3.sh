@@ -1,4 +1,4 @@
-python inference.py \
+python3 inference.py \
     --weightspath models/COVIDNet-CXR-3 \
     --metaname model.meta \
     --ckptname model \
