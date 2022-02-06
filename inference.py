@@ -1,5 +1,5 @@
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import os, argparse
 import cv2
 
@@ -9,7 +9,8 @@ from data import (
 )
 
 # To remove TF Warnings
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+tf.disable_eager_execution()
+tf.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 parser = argparse.ArgumentParser(description='COVID-Net Inference')
