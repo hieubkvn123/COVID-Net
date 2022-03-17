@@ -10,6 +10,10 @@ from data import (
     process_image_medusa
 )
 
+from flask import Flask
+
+app = Flask(__name__)
+
 # To remove TF Warnings
 tf.disable_eager_execution()
 tf.logging.set_verbosity(tf.compat.v1.logging.ERROR)
@@ -60,27 +64,36 @@ saver.restore(sess, os.path.join(args.weightspath, args.ckptname))
 
 graph = tf.get_default_graph()
 
-image_tensor = graph.get_tensor_by_name(args.in_tensorname)
-pred_tensor = graph.get_tensor_by_name(args.out_tensorname)
+@app.route("/predict_single_image", methods=["POST"])
+def predict_single_image():
+    image_tensor = graph.get_tensor_by_name(args.in_tensorname)
+    pred_tensor = graph.get_tensor_by_name(args.out_tensorname)
 
-if args.is_medusa_backbone:
-    x = process_image_file(args.imagepath, args.input_size, top_percent=0, crop=False)
-    x = x.astype('float32') / 255.0
-    medusa_image_tensor = graph.get_tensor_by_name(args.in_tensorname_medusa)
-    medusa_x = process_image_file_medusa(args.imagepath, args.input_size_medusa)
-    feed_dict = {
-                medusa_image_tensor: np.expand_dims(medusa_x, axis=0),
-                image_tensor: np.expand_dims(x, axis=0),
-            } 
-else:
-    x = process_image_file(args.imagepath, args.input_size, top_percent=args.top_percent)
-    x = x.astype('float32') / 255.0
-    feed_dict = {image_tensor: np.expand_dims(x, axis=0)}
+    if args.is_medusa_backbone:
+        x = process_image_file(args.imagepath, args.input_size, top_percent=0, crop=False)
+        x = x.astype('float32') / 255.0
+        medusa_image_tensor = graph.get_tensor_by_name(args.in_tensorname_medusa)
+        medusa_x = process_image_file_medusa(args.imagepath, args.input_size_medusa)
+        feed_dict = {
+                    medusa_image_tensor: np.expand_dims(medusa_x, axis=0),
+                    image_tensor: np.expand_dims(x, axis=0),
+                } 
+    else:
+        x = process_image_file(args.imagepath, args.input_size, top_percent=args.top_percent)
+        x = x.astype('float32') / 255.0
+        feed_dict = {image_tensor: np.expand_dims(x, axis=0)}
 
-pred = sess.run(pred_tensor, feed_dict=feed_dict)
+    pred = sess.run(pred_tensor, feed_dict=feed_dict)
 
-print('Prediction: {}'.format(inv_mapping[pred.argmax(axis=1)[0]]))
-print('Confidence')
-print(' '.join('{}: {:.3f}'.format(cls.capitalize(), pred[0][i]) for cls, i in mapping.items()))
-print('**DISCLAIMER**')
-print('Do not use this prediction for self-diagnosis. You should check with your local authorities for the latest advice on seeking medical assistance.')
+    print('Prediction: {}'.format(inv_mapping[pred.argmax(axis=1)[0]]))
+    print('Confidence')
+    print(' '.join('{}: {:.3f}'.format(cls.capitalize(), pred[0][i]) for cls, i in mapping.items()))
+    print('**DISCLAIMER**')
+    print('Do not use this prediction for self-diagnosis. You should check with your local authorities for the latest advice on seeking medical assistance.')
+
+    return {'_code' : 'success',
+            '_label' : 1,
+            '_confidence' : 0.83}
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8889, debug=False)
