@@ -18,6 +18,24 @@ def central_crop(img):
     offset_w = int((img.shape[1] - size) / 2)
     return img[offset_h:offset_h + size, offset_w:offset_w + size]
 
+def process_image(img, size, top_percent=0.08, crop=True):
+    # img = cv2.imread(filepath)
+    cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    img = crop_top(img, percent=top_percent)
+    if crop:
+        img = central_crop(img)
+    img = cv2.resize(img, (size, size))
+    return img
+
+def process_image_medusa(img, size):
+    # img = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    img = cv2.resize(img, (size, size))
+    img = img.astype('float64')
+    img -= img.mean()
+    img /= img.std()
+    return np.expand_dims(img, -1)
+
 def process_image_file(filepath, size, top_percent=0.08, crop=True):
     img = cv2.imread(filepath)
     img = crop_top(img, percent=top_percent)
