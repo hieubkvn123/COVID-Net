@@ -1,0 +1,131 @@
+ * Serving Flask app 'serve_model.py' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2022-03-21 14:14:11.812304: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2022-03-21 14:14:15.249310: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2022-03-21 14:14:15.250394: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcuda.so.1
+2022-03-21 14:14:15.283597: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
+pciBusID: 0000:3b:00.0 name: Tesla P100-PCIE-16GB computeCapability: 6.0
+coreClock: 1.3285GHz coreCount: 56 deviceMemorySize: 15.90GiB deviceMemoryBandwidth: 681.88GiB/s
+2022-03-21 14:14:15.285139: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 1 with properties: 
+pciBusID: 0000:d8:00.0 name: Tesla P100-PCIE-16GB computeCapability: 6.0
+coreClock: 1.3285GHz coreCount: 56 deviceMemorySize: 15.90GiB deviceMemoryBandwidth: 681.88GiB/s
+2022-03-21 14:14:15.285190: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2022-03-21 14:14:15.289589: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2022-03-21 14:14:15.289689: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
+2022-03-21 14:14:15.293825: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2022-03-21 14:14:15.294614: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2022-03-21 14:14:15.299388: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
+2022-03-21 14:14:15.302037: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
+2022-03-21 14:14:15.311391: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+2022-03-21 14:14:15.316584: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0, 1
+2022-03-21 14:14:15.317244: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-03-21 14:14:15.552263: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
+pciBusID: 0000:3b:00.0 name: Tesla P100-PCIE-16GB computeCapability: 6.0
+coreClock: 1.3285GHz coreCount: 56 deviceMemorySize: 15.90GiB deviceMemoryBandwidth: 681.88GiB/s
+2022-03-21 14:14:15.552960: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 1 with properties: 
+pciBusID: 0000:d8:00.0 name: Tesla P100-PCIE-16GB computeCapability: 6.0
+coreClock: 1.3285GHz coreCount: 56 deviceMemorySize: 15.90GiB deviceMemoryBandwidth: 681.88GiB/s
+2022-03-21 14:14:15.552989: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2022-03-21 14:14:15.553026: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2022-03-21 14:14:15.553037: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
+2022-03-21 14:14:15.553046: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2022-03-21 14:14:15.553055: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2022-03-21 14:14:15.553069: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
+2022-03-21 14:14:15.553079: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
+2022-03-21 14:14:15.553088: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+2022-03-21 14:14:15.555834: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0, 1
+2022-03-21 14:14:15.555862: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2022-03-21 14:14:16.932400: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1261] Device interconnect StreamExecutor with strength 1 edge matrix:
+2022-03-21 14:14:16.932447: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1267]      0 1 
+2022-03-21 14:14:16.932460: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 0:   N Y 
+2022-03-21 14:14:16.932464: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 1:   Y N 
+2022-03-21 14:14:16.935699: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 14949 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:3b:00.0, compute capability: 6.0)
+2022-03-21 14:14:16.937606: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 6625 MB memory) -> physical GPU (device: 1, name: Tesla P100-PCIE-16GB, pci bus id: 0000:d8:00.0, compute capability: 6.0)
+2022-03-21 14:14:16.937854: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2022-03-21 14:14:17.574652: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:196] None of the MLIR optimization passes are enabled (registered 0 passes)
+2022-03-21 14:14:17.605203: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2200000000 Hz
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://10.1.1.252:8889/ (Press CTRL+C to quit)
+./serve_model.sh: line 3: 293616 Killed                  flask run --host=0.0.0.0 --port=8889
+ * Serving Flask app 'serve_model.py' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2022-03-21 14:15:08.623779: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2022-03-21 14:15:12.922213: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-03-21 14:15:12.928548: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcuda.so.1
+2022-03-21 14:15:13.260700: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
+pciBusID: 0000:3b:00.0 name: Tesla P100-PCIE-16GB computeCapability: 6.0
+coreClock: 1.3285GHz coreCount: 56 deviceMemorySize: 15.90GiB deviceMemoryBandwidth: 681.88GiB/s
+2022-03-21 14:15:13.291731: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 1 with properties: 
+pciBusID: 0000:d8:00.0 name: Tesla P100-PCIE-16GB computeCapability: 6.0
+coreClock: 1.3285GHz coreCount: 56 deviceMemorySize: 15.90GiB deviceMemoryBandwidth: 681.88GiB/s
+2022-03-21 14:15:13.291794: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2022-03-21 14:15:13.296749: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2022-03-21 14:15:13.296862: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
+2022-03-21 14:15:13.301385: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2022-03-21 14:15:13.302627: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2022-03-21 14:15:13.307347: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
+2022-03-21 14:15:13.310416: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
+2022-03-21 14:15:13.320478: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+2022-03-21 14:15:13.326295: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0, 1
+2022-03-21 14:15:13.326362: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2022-03-21 14:15:14.848983: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1261] Device interconnect StreamExecutor with strength 1 edge matrix:
+2022-03-21 14:15:14.849027: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1267]      0 1 
+2022-03-21 14:15:14.849042: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 0:   N Y 
+2022-03-21 14:15:14.849047: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 1:   Y N 
+2022-03-21 14:15:14.852407: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3256 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:3b:00.0, compute capability: 6.0)
+2022-03-21 14:15:14.854363: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 3256 MB memory) -> physical GPU (device: 1, name: Tesla P100-PCIE-16GB, pci bus id: 0000:d8:00.0, compute capability: 6.0)
+2022-03-21 14:15:14.854703: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2022-03-21 14:15:15.528922: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:196] None of the MLIR optimization passes are enabled (registered 0 passes)
+2022-03-21 14:15:15.561201: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2200000000 Hz
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://10.1.1.252:8889/ (Press CTRL+C to quit)
+172.40.81.1 - - [21/Mar/2022 14:15:39] "GET / HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:15:48] "[31m[1mGET /predict_single_image HTTP/1.1[0m" 405 -
+2022-03-21 14:15:56.308568: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2022-03-21 14:15:56.543673: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+172.40.81.1 - - [21/Mar/2022 14:15:58] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:15:58] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:15:59] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:15:59] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:00] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:00] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:00] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:01] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:01] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:03] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:05] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:06] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:08] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:08] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:09] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:10] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:11] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:12] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:13] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:14] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:15] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:29] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:31] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:32] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:32] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:16:33] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:22:54] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:22:55] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:22:57] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:22:59] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [21/Mar/2022 14:23:04] "POST /predict_single_image HTTP/1.1" 200 -
+172.40.81.1 - - [22/Mar/2022 01:55:09] code 400, message Bad request syntax ('\x03\x00\x00\x13\x0eà\x00\x00\x00\x00\x00\x01\x00\x08\x00\x02\x00\x00\x00')
+172.40.81.1 - - [22/Mar/2022 01:55:09] "[35m[1m  à          [0m" HTTPStatus.BAD_REQUEST -
+172.40.81.1 - - [22/Mar/2022 09:11:31] "GET / HTTP/1.0" 200 -
+172.40.81.1 - - [22/Mar/2022 10:05:11] code 400, message Bad request syntax ('\x03\x00\x00\x13\x0eà\x00\x00\x00\x00\x00\x01\x00\x08\x00\x03\x00\x00\x00')
+172.40.81.1 - - [22/Mar/2022 10:05:11] "[35m[1m  à          [0m" HTTPStatus.BAD_REQUEST -

@@ -35,7 +35,9 @@ mapping = {'negative': 0, 'positive': 1}
 inv_mapping = {0: 'negative', 1: 'positive'}
 mapping_keys = list(mapping.keys())
 
-sess = tf.Session()
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction=0.2
+sess = tf.Session(config=config)
 tf.get_default_graph()
 saver = tf.train.import_meta_graph(os.path.join(weightspath, metaname))
 saver.restore(sess, os.path.join(weightspath, ckptname))
