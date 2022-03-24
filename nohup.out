@@ -129,3 +129,20 @@ coreClock: 1.3285GHz coreCount: 56 deviceMemorySize: 15.90GiB deviceMemoryBandwi
 172.40.81.1 - - [22/Mar/2022 09:11:31] "GET / HTTP/1.0" 200 -
 172.40.81.1 - - [22/Mar/2022 10:05:11] code 400, message Bad request syntax ('\x03\x00\x00\x13\x0eà\x00\x00\x00\x00\x00\x01\x00\x08\x00\x03\x00\x00\x00')
 172.40.81.1 - - [22/Mar/2022 10:05:11] "[35m[1m  à          [0m" HTTPStatus.BAD_REQUEST -
+./serve_model.sh: line 3: 293772 Killed                  flask run --host=0.0.0.0 --port=8889
+ * Serving Flask app "serve_model.py"
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+Usage: flask run [OPTIONS]
+
+Error: While importing "serve_model", an ImportError was raised:
+
+Traceback (most recent call last):
+  File "/anhpv/anaconda3/lib/python3.7/site-packages/flask/cli.py", line 240, in locate_app
+    __import__(module_name)
+  File "/home/anhpv/hieu/COVID-Net/serve_model.py", line 2, in <module>
+    import tensorflow.compat.v1 as tf
+ModuleNotFoundError: No module named 'tensorflow'
+

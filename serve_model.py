@@ -11,6 +11,8 @@ from data import (
 )
 
 from flask import Flask
+from flask import request
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -50,24 +52,29 @@ def home():
 
 @app.route("/predict_single_image", methods=["POST"])
 def predict_single_image():
-    image_tensor = graph.get_tensor_by_name(in_tensorname)
-    pred_tensor = graph.get_tensor_by_name(out_tensorname)
+    if(request.method == 'POST'):
+        image_tensor = graph.get_tensor_by_name(in_tensorname)
+        pred_tensor = graph.get_tensor_by_name(out_tensorname)
 
-    x = process_image_file(imagepath, input_size, top_percent=top_percent)
-    x = x.astype('float32') / 255.0
-    feed_dict = {image_tensor: np.expand_dims(x, axis=0)}
+        file = request.files['xray']
+        img = Image.open(file).convert("RGB")
+        img = np.array(img)
+        x = process_image(img, input_size, top_percent=top_percent)
+        # x = process_image_file(imagepath, input_size, top_percent=top_percent)
+        x = x.astype('float32') / 255.0
+        feed_dict = {image_tensor: np.expand_dims(x, axis=0)}
 
-    pred = sess.run(pred_tensor, feed_dict=feed_dict)
+        pred = sess.run(pred_tensor, feed_dict=feed_dict)
 
-    print('Prediction: {}'.format(inv_mapping[pred.argmax(axis=1)[0]]))
-    print('Confidence')
-    print(' '.join('{}: {:.3f}'.format(cls.capitalize(), pred[0][i]) for cls, i in mapping.items()))
-    print('**DISCLAIMER**')
-    print('Do not use this prediction for self-diagnosis. You should check with your local authorities for the latest advice on seeking medical assistance.')
+        print('Prediction: {}'.format(inv_mapping[pred.argmax(axis=1)[0]]))
+        print('Confidence')
+        print(' '.join('{}: {:.3f}'.format(cls.capitalize(), pred[0][i]) for cls, i in mapping.items()))
 
-    return {'_code' : 'success',
-            '_label' : 1,
-            '_confidence' : 0.83}
+        return {
+            '_code' : 'success',
+            '_label' : inv_mapping[pred.argmax(axis=1)[0]],
+            '_confidence' : float(pred[0][pred.argmax(axis=1)[0]])
+        }
 
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
