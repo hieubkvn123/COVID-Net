@@ -43,8 +43,13 @@ sess = tf.Session(config=config)
 tf.get_default_graph()
 saver = tf.train.import_meta_graph(os.path.join(weightspath, metaname))
 saver.restore(sess, os.path.join(weightspath, ckptname))
-
 graph = tf.get_default_graph()
+
+def validate_image(img, std_threshold=10):
+    mean_channel_std = np.std(img, axis=2).mean()
+    if(mean_channel_std > std_threshold):
+        return False 
+    return True
 
 @app.route("/", methods=["GET"])
 def home():
@@ -59,6 +64,16 @@ def predict_single_image():
         file = request.files['xray']
         img = Image.open(file).convert("RGB")
         img = np.array(img)
+
+        # Validate if the image is an X-Ray
+        if(not validate_image(img)):
+            return {
+                '_code' : 'failed',
+                '_label' : 'None',
+                '_confidence' : 'None',
+                'msg' : 'Invalid X-Ray image'
+            }
+
         x = process_image(img, input_size, top_percent=top_percent)
         # x = process_image_file(imagepath, input_size, top_percent=top_percent)
         x = x.astype('float32') / 255.0
